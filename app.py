@@ -87,7 +87,7 @@ def show_question(topic, idx):
         answer_list.append(selected_option)
         session["user_answers"] = answer_list
         result_list = process_user_answers(topic, time_taken)
-        if len(result_list)==2:
+        if len(result_list[1])!=0:
             return render_template ('result.html', topic=topic, result=result_list, first_attempt=False)
         else:
             return render_template ('result.html', topic=topic, result=result_list, first_attempt=True)
@@ -127,8 +127,7 @@ def process_user_answers(topic, time_taken):
     old_list = getattr(user, column_name)
     setattr(user, column_name, new_list)
     db.session.commit()
-    if old_list: return (new_list, old_list)
-    return (new_list,)
+    return (new_list, old_list)
 
 @app.route('/logout')
 def logout_page():
@@ -203,17 +202,20 @@ class User(db.Model):
     id = db.Column(db.Integer(), primary_key=True)
     Name = db.Column(db.String(50), nullable=False, unique=True)
     Password = db.Column(db.String(20), nullable=False)
-    Fraction = db.Column(MutableList.as_mutable(JSON))
-    Geometry = db.Column(MutableList.as_mutable(JSON))
-    Trigonometry = db.Column(MutableList.as_mutable(JSON))
-    Quadratic_Equations = db.Column(MutableList.as_mutable(JSON))
-    Probability = db.Column(MutableList.as_mutable(JSON))
-    Straight_Line = db.Column(MutableList.as_mutable(JSON))
-    Circle = db.Column(MutableList.as_mutable(JSON))
-    Vectors = db.Column(MutableList.as_mutable(JSON))
+    Fraction = db.Column(MutableList.as_mutable(JSON), default=[])
+    Geometry = db.Column(MutableList.as_mutable(JSON), default=[])
+    Trigonometry = db.Column(MutableList.as_mutable(JSON), default=[])
+    Quadratic_Equations = db.Column(MutableList.as_mutable(JSON), default=[])
+    Probability = db.Column(MutableList.as_mutable(JSON), default=[])
+    Straight_Line = db.Column(MutableList.as_mutable(JSON), default=[])
+    Circle = db.Column(MutableList.as_mutable(JSON), default=[])
+    Vectors = db.Column(MutableList.as_mutable(JSON), default=[])
 
     def __repr__(self):
         return f"User: {self.Name}"
+
+with app.app_context():
+    db.create_all()
     
 if __name__ == "__main__":
     app.run()
