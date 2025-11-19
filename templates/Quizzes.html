@@ -1,0 +1,43 @@
+{% extends 'nav_bar.html' %}
+{% block title %}
+  <title>Quizzes</title>
+{% endblock %}
+{% block content %}
+  <h1 class='heading'>Quiz</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>SL. No.</th>
+        <th>Topic</th>
+        <th>Total Question</th>
+        <th>Attempted</th>
+        <th>Right</th>
+        <th>Wrong</th>
+        <th>Time Taken</th>
+        <th>Attempt Quiz</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for t in topics %}
+        <tr>
+          <td>{{ loop.index }}</td>
+          <td>{{ t.topic }}</td>
+          <td>{{ t.no_of_ques }}</td>
+          <td>{{ session.get(t.topic)[0] }}</td>
+          <td>{{ session.get(t.topic)[1] }}</td>
+          <td>{{ session.get(t.topic)[2] }}</td>
+          {% if session.get(t.topic)[3] %}
+            <td>{{ session.get(t.topic)[3] }} seconds</td>
+          {% else %}
+            <td>{{ session.get(t.topic)[3] }}</td>
+          {% endif %}
+          <td>
+            <form action="{{ url_for('show_question', topic=t.topic, idx=1) }}" method="GET">
+              <button type="submit" class="btn">Click Here</button>
+            </form>
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}

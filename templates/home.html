@@ -1,0 +1,11 @@
+{% extends 'nav_bar.html' %}
+{% block title %}
+<style>
+    
+</style>
+{% endblock %}
+{% block content %}
+<h1 class="welcome">Welcome {{ session.get('user_name') }}.</h1>
+<img src="{{ url_for('static', filename='logo_final.png') }}" alt="logo" width="500px" height="350px">
+
+{% endblock %}

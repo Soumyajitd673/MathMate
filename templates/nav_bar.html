@@ -1,0 +1,96 @@
+<html lang="en">
+    <head>
+        <style>
+            *{
+                background-color: #212121;
+                text-align: center;
+                color: green;
+                word-spacing: 2px;
+            }
+            .navbar{
+                background-color: black;
+            }
+            .navbar a,span{
+                background-color: black;
+                color: rgba(255, 255, 255, 0.73);
+                font-size: 35px;
+            }
+            .navbar a:hover{
+                opacity: 0.7;
+            }
+            .home,.logout,.app_name{
+                margin-right: 40px;
+            }
+            .quizzes{
+                margin-right: 300px;
+            }
+            .delete{
+                margin-right: 100px;
+            }
+            .heading{
+            font-size: 100px;
+            text-align: center;
+            margin-top: 30px;
+            text-decoration: underline;
+            color: greenyellow;
+            }
+
+            table{
+            margin: 50px auto;           
+            border-collapse: collapse;     
+            background-color: rgba(63, 61, 61, 0.914);
+            width: 80%;
+            }
+            th{
+            background-color: rgba(63, 61, 61, 0.914);
+            color:antiquewhite;
+            font-size: 30px;
+            text-align: center;
+            padding: 15px;
+            }
+            td{
+            font-size: 20px;
+            text-align: center;
+            color: aliceblue;
+            padding: 0;
+            }
+            .btn{
+            background-color: green;
+            color: white;
+            font-size: 15px;
+            margin-top: 20px;
+            padding: 8px;
+            border-radius: 5px;
+            border: 2px solid transparent;
+            transition: all 0.2s;
+            }
+            .btn:hover{
+            cursor: pointer;
+            background-color: white;
+            color: green;
+            border-color: green;
+            }
+            .btn:active{
+            box-shadow: 5px 5px 5px rgba(255, 255, 255, 0.3);
+            }
+            
+            .welcome{
+                font-size: 46;
+                text-decoration: underline;
+            }
+        </style>
+        <title>Math Mate</title>
+        {% block title %}{% endblock %}
+    </head>
+    <body>
+        <div class="navbar">
+            <span class="app_name">Math Mate</span>
+            <a href="{{ url_for('home_page') }}" class="home">Home</a>
+            <a href="{{ url_for('Quiz_page') }}" class="quizzes">Quizzes</a>
+            <a href="{{ url_for('logout_page') }}" class="logout">Logout</a>
+            <a href="{{ url_for('delete_account_conformation_page') }}" class="delete">Delete Account</a>
+            <span class="user_name">{{ session.get('user_name') }}</span>
+        </div>
+        {% block content %}{% endblock %}
+    </body>
+</html>

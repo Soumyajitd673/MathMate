@@ -1,0 +1,75 @@
+<html>
+  <head>
+    <title>{{ topic }}</title>
+    <style>
+      * {
+          background-color: #212121;
+          color: whitesmoke;
+          text-align: center;
+          margin: 30px;
+      }
+
+      .btn {
+          background-color: green;
+          color: white;
+          font-size: 20px;
+          margin: 0px;
+          border-radius: 5px;
+          border: 2px solid transparent;
+          transition: all 0.2s;
+          width: 200px;
+          height: 50px;
+      }
+
+      .btn:hover {
+          cursor: pointer;
+          background-color: white;
+          color: green;
+          border-color: green;
+      }
+
+      .btn:active {
+          box-shadow: 5px 5px 5px rgba(255, 255, 255, 0.3);
+      }
+
+      .option {
+          font-size: 20px;
+      }
+
+      .ques {
+          font-size: 20px;
+      }
+
+      .heading {
+          font-size: 30px;
+          color: greenyellow;
+          text-decoration: underline;
+      }
+    </style>
+
+  </head>
+  <body>
+    <h2 class="heading">{{ topic }}</h2>
+    <p class="ques">Q{{ index }}&nbsp;&nbsp;{{ q.question }}</p>
+    <form action="{{ url_for('show_question', topic=topic , idx=(index+1))}}" method="POST">
+        <div>
+            <label for="A" class="option">Option A : &nbsp; {{q.option_A}}</label>
+            <input type="radio" id="A" name="option" value="A">
+            <br>
+            <label for="B" class="option">Option B : &nbsp; {{q.option_B}}</label>
+            <input type="radio" id="B" name="option" value="B">
+            <br>
+            <label for="C" class="option">Option C : &nbsp; {{q.option_C}}</label>
+            <input type="radio" id="C" name="option" value="C">
+            <br>
+            <label for="D" class="option">Option D : &nbsp; {{q.option_D}}</label>
+            <input type="radio" id="D" name="option" value="D">
+        </div>
+        <div>
+            <input type="reset" value="Clear" class="btn">
+            <br><br>
+            <input type="submit" value="Submit" class="btn">
+        </div>
+    </form>
+  </body>
+</html>

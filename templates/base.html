@@ -1,0 +1,106 @@
+<html>
+    <head>
+        <style>
+            *{
+                background-color: #212121;
+                color: aliceblue;
+                text-align: center;
+            }
+            .welcome{
+                text-align: left;
+                color: yellow;
+            }
+            .textbox{
+                background-color: white;
+                color: black;
+                width: 300px;
+                height: 40px;
+                font-size: 16;
+            } 
+            .lb{
+                font-size: 24;
+                color: yellow;
+                margin: 10px;
+            }
+            .heading{
+                font-size: 44;
+                text-decoration: underline;
+                color: greenyellow;
+            }
+            .btn{
+                background-color: green;
+                color: white;
+                font-size: 20px;
+                margin-top: 10px;
+                padding: 8px;
+                border-radius: 5px;
+                border: 2px solid transparent;
+                transition: all 0.2s;
+                width: 120PX;
+                height: auto;   
+                display: inline-block;
+                line-height: normal;
+                text-align: center;
+            }
+            .btn:hover{
+                cursor: pointer;
+                background-color: white;
+                color: green;
+                border-color: green;
+            }
+            .btn:active{
+                box-shadow: 5px 5px 5px rgba(255, 255, 255, 0.3);
+            }
+            .ref{
+                font-size: 20px;
+            }
+            .message{
+                font-size: 18;
+                position: fixed;
+                background-color: white;
+                color: green;
+                width: 20%;
+                height: 7%;
+                bottom: 50px;
+                right: 50px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+            }
+            table{
+                margin: 50px auto;           
+                border-collapse: collapse;     
+                background-color: rgba(63, 61, 61, 0.914);
+                width: 80%;
+                padding: 20px;
+            }
+            th{
+                background-color: rgba(63, 61, 61, 0.914);
+                color:antiquewhite;
+                font-size: 30px;
+                text-align: center;
+                padding: 15px;
+            }
+            td{
+                font-size: 20px;
+                text-align: center;
+                color: aliceblue;
+                padding: 0;
+            }
+        </style>
+        {% block title %}{% endblock %}
+    </head>
+    <body>
+        <div>
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    {% for msg in messages %}
+                        <div class="message">{{ msg }}</div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+        </div>
+        {% block content %}{% endblock %}
+    </body>
+</html>

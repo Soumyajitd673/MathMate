@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+    {% block title %}
+    {% endblock %}
+    {% block content %}
+        <h1 class="heading">{{ topic }} Quiz Result</h1>
+        <div>
+            {% if first_attempt %}
+                <p>Result:</p>
+                <p>Total = 10 &nbsp;&nbsp; Attempted = {{result[0][0]}}</p>
+                <p>Right = {{result[0][1]}} &nbsp;&nbsp; Wrong = {{result[0][2]}}</p>
+                <p>&nbsp; Time Taken = {{result[0][3]}}</p>
+            {% else %}
+                <p>Result:</p>
+                <p>Total = 10 &nbsp;&nbsp; Attempted = {{result[0][0]}}</p>
+                <p>Right = {{result[0][1]}} &nbsp;&nbsp; Wrong = {{result[0][2]}}</p>
+                <p>&nbsp; Time Taken = {{result[0][3]}}</p>
+                <p>Last Attempt:</p>
+                <p>Total = 10 &nbsp;&nbsp; Attempted = {{result[1][0]}}</p>
+                <p>Right = {{result[1][1]}} &nbsp;&nbsp; Wrong = {{result[1][2]}}</p>
+                <p>&nbsp; Time Taken = {{result[1][3]}}</p>
+            {% endif %}
+        </div>
+        <div>
+            <br>
+            <form action="{{ url_for('analysis_page', topic=topic) }}" method="GET">
+                <button class="btn">Analyse Quiz</button>
+            </form>
+            <form action="{{ url_for('home_page') }}" method="GET">
+                <button class="btn">Skip to Home</button>
+            </form>
+        </div>
+    {% endblock %}

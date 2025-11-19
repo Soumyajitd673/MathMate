@@ -1,0 +1,5 @@
+flaskapp/
+*.sqlite
+*.db
+__pycache__/
+*.pyc

@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+    {% block title %}{% endblock %}
+    {% block content %}
+         <div>
+            <h1 class="heading">Create Account</h1>
+            <img src="{{ url_for( 'static', filename='logo_final.png')}}" alt="Math Mate app logo" width="300px" height="250px">
+        </div>
+        <div>
+            <form action="{{ url_for('signup_page') }}" method="POST" >
+                <input type="hidden" name="source" value="signup">
+                <label class="lb">Enter Your Name</label><br>
+                <input type="text" id="name" name="name" placeholder="Sherlock Holmes" class="textbox"><br><br>
+                <label for="password1" class="lb">Make Your Password</label><br>
+                <input type="text" id="password1" name="password1" placeholder="best#detective@1" class="textbox"><br><br>
+                <label for="password2" class="lb">Confirm Password</label><br>
+                <input type="text" id="password2" name="password2" placeholder="best#detective@1" class="textbox"><br><br>
+                <button type="submit" class="btn">Submit</button>
+            </form>
+        </div>
+        <div>
+            <span class="ref">Already have an account ? &nbsp;</span> 
+            <a href="{{ url_for('login_page') }}" class="ref">Click here to login</a>
+        </div>
+    {% endblock %}
