@@ -64,6 +64,8 @@ def login_page():
 def home_page():
     if 'user_name' in session:
         return render_template('home.html')
+    else:
+        return redirect(url_for('signup_page'))
 
 @app.route('/quizzes')
 def Quiz_page():
